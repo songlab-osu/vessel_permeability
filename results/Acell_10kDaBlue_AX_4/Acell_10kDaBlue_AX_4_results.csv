@@ -1,0 +1,2 @@
+experiment,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
+Acell_10kDaBlue_AX_4,4_c2025.07.24_Acell_10kDaBlue_AX.tif,1,272.679947185886,5.30500660480842e-05,4.88478641148687e-05,5.75738149281685e-05,0.994620036902881,0.993164357573368,0.995395100831319,91633.0225677302,23549912.0129315,5,30,60,7,ok
