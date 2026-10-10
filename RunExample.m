@@ -19,8 +19,10 @@ clc
 root = fileparts(mfilename('fullpath'));
 addpath(root, fullfile(root, 'helper_functions'));
 
-summary = runPermeabilityBatch(fullfile(root, 'experiments/TIF/cAMP'),...
-    SummaryFile="AX_vs_Epi.csv");
+% Analyze 'experiment' as either single or batched runs
+summary = runPermeabilityBatch(fullfile(root, 'example_experiments',...
+    {'example_vessel.m','example_nd2_direct.m'}), SummaryFile="Results.csv");
+
 disp(summary(:, {'file', 'channel', 'diameter_um', 'P_app_cm_s', ...
     'P_app_top_cm_s', 'P_app_bottom_cm_s', 'R2', 'status'}))
 

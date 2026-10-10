@@ -1,2 +1,0 @@
-experiment,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
-Acell_10kDaFITC_AX_7,7_c2025.07.24_Acell_10kDaFITC_AX.tif,1,306.267315492894,4.60530888007612e-05,4.42794604430226e-05,4.78495008289307e-05,0.989967068096481,0.989829386736154,0.989974942719989,206052.804917108,68515751.1201513,5,30,60,7,ok

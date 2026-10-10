@@ -1,3 +1,0 @@
-experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
-HUVEC_10kDa_FITC_Epi_1,HUVEC_10kDa_FITC_Epi_1.m,,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,experiment file error: Experiment file not found: D:\_Research\_Vessels\VesselPermeabilityAnalysis_v1.0.0\experiments\TIF\cAMP\HUVEC_10kDa_FITC_Epi_1.m
-HUVEC_10kDaBlue_AX_1,HUVEC_10kDaBlue_AX_1.m,1_s2026.05.02_HUVEC_10kDaBlue_AX.tif,1,262.866966414938,2.40438994103463e-05,2.25832581581612e-05,2.5402233043331e-05,0.897911011322282,0.841308084698172,0.907444156818412,10593.001634415,5790554.51311061,5.25,5.25,35.45,26,ok

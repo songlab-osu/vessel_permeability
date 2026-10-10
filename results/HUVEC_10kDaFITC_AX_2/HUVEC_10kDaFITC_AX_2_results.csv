@@ -1,2 +1,0 @@
-experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
-HUVEC_10kDaFITC_AX_2,HUVEC_10kDaFITC_AX_2.m,2_s2026.05.02_HUVEC_10kDaFITC_AX.tif,1,187.162842723237,4.2709782654523e-06,4.16263419834422e-06,4.38381771135342e-06,0.985902236572117,0.996851051097476,0.951190991164784,14926.6419173957,32705770.9022986,15,15,150,28,ok
