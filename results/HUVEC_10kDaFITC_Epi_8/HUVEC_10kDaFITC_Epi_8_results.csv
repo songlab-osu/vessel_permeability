@@ -1,0 +1,2 @@
+experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
+HUVEC_10kDaFITC_Epi_8,HUVEC_10kDaFITC_Epi_8.m,8_s2025.07.22_Control_10kDaFITC_Epi.tif,1,156.841038238276,1.98089717260483e-06,1.56793620479663e-06,2.38723593835757e-06,0.977526961142006,0.98425451277119,0.97045792676462,34328.0258841953,67949554.5605195,5.25,30.45,160.45,27,ok

@@ -1,6 +1,6 @@
 # VesselPermeabilityAnalysis
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.23222326)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b%2B-orange)](https://www.mathworks.com/products/matlab.html)
 
@@ -109,7 +109,19 @@ runPermeabilityBatch(["experiments/expA.m", "experiments/expB.m"])
 summary = runPermeabilityBatch("experiments");   % all files, incl. subfolders
 ```
 
-Each experiment writes to its `output_dir`:
+Every call to `runPermeabilityBatch` also writes **one batch summary CSV**
+covering all experiments in that call:
+`results/batch_summary_<yyyyMMdd_HHmmss>.csv` (in the toolbox folder). Each
+row is one image × channel, labelled with its experiment name and experiment
+file. To choose the location:
+
+```matlab
+runPermeabilityBatch("experiments", SummaryFile="results/HUVEC_vs_acellular.csv")
+runPermeabilityBatch("experiments", SummaryFile="D:/Summaries")   % timestamped name in folder
+runPermeabilityBatch("experiments", SummaryFile="none")           % skip it
+```
+
+In addition, each experiment writes to its own `output_dir`:
 
 | File | Contents |
 |---|---|
@@ -122,7 +134,8 @@ For large batches, set `show_figures = false` in the experiment file: figures
 are drawn off-screen, saved as PNGs, and closed, so no windows open. Set
 `plot_mask` and `plot_graph` to false to skip plotting entirely.
 
-A file that fails (e.g. a mask that does not segment) is recorded in the
+An image that fails (e.g. a mask that does not segment), or an experiment
+file that cannot be loaded, is recorded in the
 `status` column and the batch continues.
 
 ### Single file from the command line

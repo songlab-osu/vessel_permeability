@@ -1,0 +1,2 @@
+experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
+CM_10kDaBlue_AX_2,CM_10kDaBlue_AX_2.m,2_s2025.08.07_231CM_10kDaBlue_AX.tif,1,244.692023830642,5.59600046492274e-06,5.98173700134223e-06,5.21324999461474e-06,0.992553422438673,0.992954968887054,0.988740969609546,14731.98605414,32208713.2160566,5,90,150,13,ok

@@ -127,7 +127,7 @@ time = buildTimeVector(data.time_s, nFrames, opts, imageFile);
 %% 2. Locate analysis start (t_delay) and baseline frame ==================
 % First frame acquired at or after t_delay (small tolerance for rounding of
 % stored timestamps).
-t_idx = find(time >= opts.t_delay - 0.5, 1, 'first');
+t_idx = find(time >= opts.t_delay - 1e-6, 1, 'first');
 if isempty(t_idx)
     error('doPermeabilityAnalysis:t_delay', ...
         't_delay = %g s is after the last frame (%g s).', opts.t_delay, time(end));
@@ -264,12 +264,12 @@ else
 end
 
 %% 9. Linear fit of I(t) ==================================================
-inWindow = time >= opts.analysis_start - 0.5 & time <= opts.analysis_end + 0.5;
+inWindow = time >= opts.analysis_start - 1e-6 & time <= opts.analysis_end + 1e-6;
 inWindow(1:ref_idx-1) = false;                   % never fit before I0 frame
 win = find(inWindow);
-if numel(win) < 2
+if numel(win) < 3
     error('doPermeabilityAnalysis:window', ['Only %d frame(s) in the fit ' ...
-        'window [%g, %g] s after t_delay/I0 (need >= 2).'], numel(win), ...
+        'window [%g, %g] s after t_delay/I0 (need >= 3).'], numel(win), ...
         opts.analysis_start, opts.analysis_end);
 end
 [dIdt, fitLine, R2] = linearFit(time(win), I(win));

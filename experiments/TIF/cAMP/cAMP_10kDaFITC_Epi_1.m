@@ -8,7 +8,7 @@
 % -------------------------------------------------------------------------
 
 %% Files ===================================================================
-experiment.name     = "Acell_10kDaFITC_AX_2";        % label for output files
+experiment.name     = "cAMP_10kDaFITC_Epi_1";        % label for output files
 % experiment.root_dir = "D:/PermeabilityData"; % optional base for relative paths
 experiment.data_dir = "example_data/TIF";         % folder containing the images
 
@@ -16,7 +16,7 @@ experiment.data_dir = "example_data/TIF";         % folder containing the images
 % explicitly or use a wildcard pattern:
 %   experiment.images = ["vessel1.nd2"; "vessel2.nd2"];
 %   experiment.images = "*.nd2";
-experiment.images = "2_c2025.07.24_Acell_10kDaFITC_AX.tif";
+experiment.images = "4_s2026.05.02_cAMP_10kDaFITC_Epi.tif";
 
 % Lumen masks, only used when options.mask_mode = "file". One entry per
 % image, in the same order ("" for none). Not allowed with wildcards.
@@ -24,7 +24,7 @@ experiment.images = "2_c2025.07.24_Acell_10kDaFITC_AX.tif";
 experiment.masks = [];
 
 % Where results are written (created if needed).
-experiment.output_dir = "results/Acell_10kDaFITC_AX_2";
+experiment.output_dir = "results/cAMP_10kDaFITC_Epi_1";
 
 %% Input / channel selection ===============================================
 experiment.options.channel       = 1;   % tracer channel(s), e.g. [1 2]
@@ -34,9 +34,9 @@ experiment.options.crop_um       = 0;   % lateral crop [um], or [left right]
 
 %% Timing ==================================================================
 experiment.options.frame_interval_s = [];  % [] = from file metadata
-experiment.options.multiphase    = false;  % two-rate acquisition (TIFF only)
+experiment.options.multiphase    = false;   % two-rate acquisition (TIFF only)
 experiment.options.phase1_frames = 30;
-experiment.options.phase1_int    = 1;      % s
+experiment.options.phase1_int    = 1.05;   % s
 experiment.options.phase2_int    = 5;      % s
 experiment.options.t_delay       = 5;      % ignore frames before this [s]
 experiment.options.baseline_frame = 1;     % pre-tracer frame subtracted
@@ -48,8 +48,8 @@ experiment.options.filter         = false;   % Gaussian pre-filter
 experiment.options.filter_size_um = 200;     % kernel width [um]
 
 %% Region masks ============================================================
-experiment.options.dilation_top_um     = 0;     % lumen margin above [um]
-experiment.options.dilation_bot_um     = 0;     % lumen margin below [um]
+experiment.options.dilation_top_um     = 10;     % lumen margin above [um]
+experiment.options.dilation_bot_um     = 10;     % lumen margin below [um]
 experiment.options.background_subtract = true;
 experiment.options.background_roi_um   = 25;    % top/bottom strip height
 
@@ -59,11 +59,11 @@ experiment.options.erosion_line_um  = 75;    % used only if I0_steady
 experiment.options.I0_smooth_frames = 5;     % used only if I0_steady
 
 %% Linear fit window =======================================================
-experiment.options.analysis_start = 30;  % s (absolute acquisition time)
-experiment.options.analysis_end   = 60;  % s
+experiment.options.analysis_start = 0;  % s (absolute acquisition time)
+experiment.options.analysis_end   = Inf;  % s
 
 %% Permeability model ======================================================
-experiment.options.imaging_mode = "confocal";  % "confocal" or "widefield"
+experiment.options.imaging_mode = "widefield";  % "confocal" or "widefield"
 experiment.options.half         = true;       % also fit top/bottom halves
 
 %% Output ==================================================================

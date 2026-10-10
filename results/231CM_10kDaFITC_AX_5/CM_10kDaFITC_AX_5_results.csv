@@ -1,0 +1,2 @@
+experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
+CM_10kDaFITC_AX_5,CM_10kDaFITC_AX_5.m,5_s2025.08.07_231CM_10kDaFITC_AX.tif,1,242.18994626914,3.72128580542474e-06,1.98171948244621e-06,5.48978053260643e-06,0.995579378025792,0.979218821259731,0.997614702517229,21361.479345382,69512741.0980587,5,60,150,19,ok

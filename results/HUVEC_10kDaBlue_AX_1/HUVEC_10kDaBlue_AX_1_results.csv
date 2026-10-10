@@ -1,0 +1,2 @@
+experiment,experiment_file,file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,R2_top,R2_bottom,dIdt,I0_ref,t_I0_s,fit_start_s,fit_end_s,n_fit_points,status
+HUVEC_10kDaBlue_AX_1,HUVEC_10kDaBlue_AX_1.m,1_s2026.05.02_HUVEC_10kDaBlue_AX.tif,1,246.570907352663,5.70493849359937e-06,5.01331638648291e-06,6.32626686633932e-06,0.885336375949887,0.814429285008556,0.892301593713001,2230.44072660093,4820050.15804596,15,50,150,21,ok
