@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+title: VesselPermeabilityAnalysis
+message: "If you use this software, please cite it using these metadata."
+type: software
+authors:
+  - family-names: Holter
+    given-names: "J. C."
+  - family-names: Adorno
+    given-names: "J. J."
+  - family-names: Agarwal
+    given-names: "S. S."
+  - family-names: Tinapple
+    given-names: "J. W."
+  - family-names: Barlage
+    given-names: "J. M."
+  - family-names: Song
+    given-names: "J. W."
+  - family-names: Jones
+    given-names: "T. H."
+version: 1.0.0
+date-released: 2026-01-01
+repository-code: "https://github.com/songlab-osu/vessel_permeability"
+url: "https://github.com/songlab-osu/vessel_permeability"
+abstract: "MATLAB code for measuring the apparent permeability (P_app) of cylindrical microvessels from fluorescence time-lapse images of tracer perfusion."
+keywords:
+  - MATLAB
+  - permeability
+  - microvessels
+  - image analysis
+  - tracer diffusion
+license: MIT
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23222326
+    description: "Zenodo archive DOI"
+references:
+  - type: article
+    authors:
+      - family-names: Holter
+        given-names: "J. C."
+      - family-names: Adorno
+        given-names: "J. J."
+      - family-names: Agarwal
+        given-names: "S. S."
+      - family-names: Tinapple
+        given-names: "J. W."
+      - family-names: Barlage
+        given-names: "J. M."
+      - family-names: Song
+        given-names: "J. W."
+      - family-names: Jones
+        given-names: "T. H."
+    title: "Imaging Modality-Dependent Differences in Apparent Vascular Permeability Measurements of Cylindrical Microvessels"
+    journal: "Lab on a Chip"
+    year: 2026
+    notes: "Manuscript accompanying this software"
