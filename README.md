@@ -1,6 +1,6 @@
 # VesselPermeabilityAnalysis
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.23222326)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23222326.svg)](https://doi.org/10.5281/zenodo.23222326)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b%2B-orange)](https://www.mathworks.com/products/matlab.html)
 
