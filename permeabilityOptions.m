@@ -7,7 +7,7 @@ function opts = permeabilityOptions(userOpts)
 %                                         userOpts, then validates.
 %
 %   This file is the single source of truth for every tunable parameter in
-%   the toolbox. Experiment files (see experiments/experiment_template.m)
+%   the toolbox. Experiment files (see example_experiments/experiment_template.m)
 %   only need to list the options that differ from these defaults.
 %   Misspelled option names raise an error rather than being silently
 %   ignored.
@@ -17,7 +17,7 @@ function opts = permeabilityOptions(userOpts)
 %   See also doPermeabilityAnalysis, runPermeabilityBatch.
 
 % -------------------------------------------------------------------------
-% Part of VesselPermeabilityAnalysis v1.0.0 - MIT License (see LICENSE)
+% Part of VesselPermeabilityAnalysis - MIT License (see LICENSE)
 % -------------------------------------------------------------------------
 
 %% ======================= Input / channel selection ======================

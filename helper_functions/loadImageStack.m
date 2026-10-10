@@ -33,7 +33,7 @@ function data = loadImageStack(filename, channel, series)
 %   (or a single projection) per time point.
 
 % -------------------------------------------------------------------------
-% Part of VesselPermeabilityAnalysis v1.0.0 - MIT License (see LICENSE)
+% Part of VesselPermeabilityAnalysis - MIT License (see LICENSE)
 % -------------------------------------------------------------------------
 
 arguments

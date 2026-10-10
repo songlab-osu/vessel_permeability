@@ -1,10 +1,10 @@
-%% Example experiment: acellular channel, 10 kDa FITC-dextran, Nikon AX
+%% Example experiment: cAMP condition, 10 kDa dextran (blue), Nikon AX
 % -------------------------------------------------------------------------
 % Analyses the example TIFF in ../example_data. Only options that differ
 % from the defaults in permeabilityOptions.m are listed; see
 % experiment_template.m for the full set.
 %
-%   runPermeabilityBatch("experiments/example_Acell_10kDaFITC_AX.m")
+%   runPermeabilityBatch("example_experiments/example_vessel.m")
 % -------------------------------------------------------------------------
 
 %% Files ===================================================================

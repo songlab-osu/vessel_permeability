@@ -34,18 +34,23 @@ function summary = runPermeabilityBatch(experimentFiles, batchOpts)
 %     <name>_results.csv        one row per image x channel
 %     <name>_results.mat        full results structs (traces, masks, options)
 %     <name>_experiment.m       copy of the experiment file, for provenance
+%                               (with a header naming the software version)
 %     <image>_ch<N>_*.png       figures (if options.save_figures = true)
+%
+%   Every CSV row includes software_version and matlab_release columns,
+%   and each results struct in the .mat file has a "software" field (see
+%   permeabilityVersion), so results can be traced to the code version.
 %
 %   OUTPUT
 %     summary - table combining the rows from all experiments (the same
 %               rows as the batch summary CSV)
 %
 %   See also doPermeabilityAnalysis, permeabilityOptions,
-%   experiments/experiment_template.m.
+%   permeabilityVersion, example_experiments/experiment_template.m.
 
 % -------------------------------------------------------------------------
-% Part of VesselPermeabilityAnalysis v1.0.0 - MIT License (see LICENSE)
-% Please cite: Holter JC et al., Lab on a Chip (2026). See README.md.
+% Part of VesselPermeabilityAnalysis - MIT License (see LICENSE)
+% Please cite the software; see CITATION.cff and README.md.
 % -------------------------------------------------------------------------
 
 arguments
@@ -57,6 +62,9 @@ toolboxDir = string(fileparts(mfilename('fullpath')));
 addpath(fullfile(toolboxDir, 'helper_functions'));
 files = listExperimentFiles(string(experimentFiles));
 summaryFile = resolveSummaryFile(batchOpts.SummaryFile, toolboxDir);
+[~, sw] = permeabilityVersion();
+fprintf('VesselPermeabilityAnalysis v%s | MATLAB %s | %d experiment file(s)\n', ...
+    sw.version, sw.matlab_release, numel(files));
 
 summary = table();
 for e = 1:numel(files)
@@ -80,7 +88,8 @@ for e = 1:numel(files)
     if ~isfolder(expt.output_dir)
         mkdir(expt.output_dir);
     end
-    copyfile(expt.file, fullfile(expt.output_dir, expt.name + "_experiment.m"));
+    copyExperimentFile(expt.file, ...
+        fullfile(expt.output_dir, expt.name + "_experiment.m"), sw);
 
     rows = table();
     allResults = {};
@@ -161,17 +170,33 @@ if isempty(r)
         'dIdt', NaN, 'I0_ref', NaN, 't_I0', NaN, 'fit_window_s', [NaN NaN], ...
         'n_fit_points', NaN);
 end
+[~, sw] = permeabilityVersion();
 [~, name, ext] = fileparts(string(imageFile));
 [~, expFileName, expFileExt] = fileparts(string(expFile));
 row = table(string(expName), expFileName + expFileExt, name + ext, ...
     channel, r.diameter_um, r.P_app, ...
     r.P_app_top, r.P_app_bottom, r.R2, r.R2_top, r.R2_bottom, r.dIdt, ...
     r.I0_ref, r.t_I0, r.fit_window_s(1), r.fit_window_s(2), r.n_fit_points, ...
-    status, ...
+    status, sw.version, sw.matlab_release, ...
     'VariableNames', {'experiment', 'experiment_file', 'file', 'channel', 'diameter_um', ...
     'P_app_cm_s', 'P_app_top_cm_s', 'P_app_bottom_cm_s', 'R2', 'R2_top', ...
     'R2_bottom', 'dIdt', 'I0_ref', 't_I0_s', 'fit_start_s', 'fit_end_s', ...
-    'n_fit_points', 'status'});
+    'n_fit_points', 'status', 'software_version', 'matlab_release'});
+end
+
+function copyExperimentFile(src, dst, sw)
+%COPYEXPERIMENTFILE  Copy the experiment file, prefixed with a provenance
+%   header (software version, MATLAB release, date, original location).
+txt = fileread(src);
+fid = fopen(dst, 'w', 'n', 'UTF-8');
+if fid < 0
+    error('runPermeabilityBatch:write', 'Cannot write %s', dst);
+end
+closer = onCleanup(@() fclose(fid)); %#ok<NASGU>
+fprintf(fid, '%% Copied by VesselPermeabilityAnalysis v%s (MATLAB %s) on %s\n', ...
+    sw.version, sw.matlab_release, sw.run_datetime);
+fprintf(fid, '%% Original file: %s\n\n', src);
+fprintf(fid, '%s', txt);
 end
 
 function saveFigures(figs, outDir, imgName, channel)
