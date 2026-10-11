@@ -77,9 +77,11 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   Jacob C. Holter (a,d), Jonathan J. Adorno (a), Shashwat S. Agarwal (b),
 %   Joseph W. Tinapple (a), Joseph M. Barlage (c), Jonathan W. Song (b,d,*),
 %   Travis H. Jones (b,*)
-%   (a) [Affiliation a]   (b) [Affiliation b]
-%   (c) [Affiliation c]   (d) [Affiliation d]
-%   * Corresponding authors: [email], [email]
+%   (a) Department of Biomedical Engineering, The Ohio State University, Columbus OH 43210 
+%   (b) Department of Mechanical and Aerospace Engineering, The Ohio State University, Columbus OH 43210
+%   (c) Department of Biomedical Education and Anatomy, The Ohio State University, Columbus OH 43210
+%   (d) The Comprehensive Cancer Center, The Ohio State University, Columbus OH 43210
+%   * Corresponding Authors: jones.3318@osu.edu, song.1069@osu.edu
 %
 % REQUIREMENTS
 %   MATLAB R2023b or later (developed with R2025b)
