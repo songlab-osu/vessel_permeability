@@ -242,8 +242,8 @@ MIT License — see [LICENSE](LICENSE).
 
 ## Contact
 
-Corresponding authors: Jonathan W. Song ([email]) and Travis H. Jones ([email])
+Corresponding authors: Jonathan W. Song (song.1069@osu.edu) and Travis H. Jones (jones.3318@osu.edu)
 
 ## Acknowledgments
 
-This work was supported by [funding source, grant number].
+This work was supported by an NSF CAREER award [CBET-1752106]; the Mark Foundation for Cancer Research [18-024-ASP]; the National Heart Lung Blood Institute [R01HL141941]; and the Ohio State University (OSU) Materials Research Seed Grant Program, funded by the Center for Emergent Materials, an NSF-MRSEC [DMR-1420451]; the Center for Exploration of Novel Complex Materials, and the Institute for Materials Research. One of the authors, J.C.H., gratefully acknowledges funding from the OSU Pelotonia Graduate Fellowship program and support from an NHLBI Graduate Diversity Supplement. S.S.A. is funded through the OSU University Fellowship and the Distinguished University Fellowship.
