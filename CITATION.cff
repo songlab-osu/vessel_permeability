@@ -8,22 +8,24 @@ title: VesselPermeabilityAnalysis
 message: "If you use this software, please cite it using these metadata."
 type: software
 authors:
-  # Add "orcid: https://orcid.org/0000-0000-0000-0000" and
-  # "affiliation: ..." to each author; Zenodo copies both to the record.
   - family-names: Holter
     given-names: Jacob C.
+    orcid: https://orcid.org/0009-0003-0121-4158
   - family-names: Adorno
     given-names: Jonathan J.
   - family-names: Agarwal
     given-names: Shashwat S.
+    orcid: https://orcid.org/0000-0002-6930-645X
   - family-names: Tinapple
     given-names: Joseph W.
   - family-names: Barlage
     given-names: Joseph M.
   - family-names: Song
     given-names: Jonathan W.
+    orcid: https://orcid.org/0000-0002-6991-5298
   - family-names: Jones
     given-names: Travis H.
+    orcid: https://orcid.org/0000-0002-7315-5201
 version: 1.0.0
 date-released: 2026-10-10
 repository-code: "https://github.com/songlab-osu/vessel_permeability"
