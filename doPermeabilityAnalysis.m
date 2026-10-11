@@ -86,7 +86,8 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 % REQUIREMENTS
 %   MATLAB R2023b or later (developed with R2025b)
 %   Image Processing Toolbox
-%   Bio-Formats MATLAB toolbox (bfmatlab) - only for non-TIFF input
+%   Bio-Formats MATLAB toolbox (bfmatlab, tested with 8.5.0) - only for
+%   non-TIFF input
 %
 % VERSION 1.0.0 (see permeabilityVersion) | Created 2026-08-21 | Updated 2026-10-10
 % Copyright (c) 2026 The Authors. Licensed under the MIT License (LICENSE).

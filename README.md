@@ -77,7 +77,8 @@ The vessel should run approximately horizontally across the image.
 - Image Processing Toolbox
 - *Optional, for .nd2 and other microscope formats:* the
   [Bio-Formats MATLAB toolbox](https://www.openmicroscopy.org/bio-formats/downloads/)
-  (`bfmatlab`)
+  (`bfmatlab`; tested with version 8.5.0). Bio-Formats is GPL-licensed and
+  is not bundled; download it separately.
 
 ## Supported image formats
 
