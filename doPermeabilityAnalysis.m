@@ -67,7 +67,8 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   If you use this code, please cite the software (see CITATION.cff):
 %   Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW,
 %   Jones TH. VesselPermeabilityAnalysis (Version 1.0.0) [Software].
-%   Zenodo. https://github.com/songlab-osu/vessel_permeability
+%   Zenodo. https://doi.org/10.5281/zenodo.23301972
+%   (all versions: https://doi.org/10.5281/zenodo.23301971)
 %
 %   Accompanying manuscript (submitted): "Imaging Modality-Dependent
 %   Differences in Apparent Vascular Permeability Measurements of

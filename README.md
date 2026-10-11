@@ -1,7 +1,6 @@
 # VesselPermeabilityAnalysis
 
-<!-- After the first GitHub release, add the software's Zenodo concept DOI badge here:
-[![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
+[![Software DOI](https://img.shields.io/badge/Software%20DOI-10.5281%2Fzenodo.23301971-blue)](https://doi.org/10.5281/zenodo.23301971)
 [![Data DOI](https://img.shields.io/badge/Data%20DOI-10.5281%2Fzenodo.23222326-blue)](https://doi.org/10.5281/zenodo.23222326)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b%2B-orange)](https://www.mathworks.com/products/matlab.html)
@@ -224,9 +223,13 @@ BibTeX formats.
 **Software:**
 > Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW, Jones TH.
 > (2026). *VesselPermeabilityAnalysis* (Version 1.0.0) [Software]. Zenodo.
-> https://github.com/songlab-osu/vessel_permeability
-<!-- After the first release, add: https://doi.org/10.5281/zenodo.XXXXXXX
-     (use the concept DOI for "all versions", or the version DOI for v1.0.0) -->
+> https://doi.org/10.5281/zenodo.23301972
+
+To cite the exact version you used, use its version DOI (v1.0.0:
+[10.5281/zenodo.23301972](https://doi.org/10.5281/zenodo.23301972)). To
+refer to the software in general, use the concept DOI, which always
+resolves to the latest version:
+[10.5281/zenodo.23301971](https://doi.org/10.5281/zenodo.23301971).
 
 **Data:**
 > Image data and experiment files for the manuscript. Zenodo.
