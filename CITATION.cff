@@ -1,56 +1,93 @@
+# Citation metadata for VesselPermeabilityAnalysis.
+# GitHub uses this file for the "Cite this repository" button, and Zenodo
+# uses it for the software record created from each GitHub release.
+# When releasing, keep "version" equal to the git tag (without the "v") and
+# set "date-released" to the release date.
 cff-version: 1.2.0
 title: VesselPermeabilityAnalysis
 message: "If you use this software, please cite it using these metadata."
 type: software
 authors:
+  # Add "orcid: https://orcid.org/0000-0000-0000-0000" and
+  # "affiliation: ..." to each author; Zenodo copies both to the record.
   - family-names: Holter
-    given-names: "J. C."
+    given-names: Jacob C.
   - family-names: Adorno
-    given-names: "J. J."
+    given-names: Jonathan J.
   - family-names: Agarwal
-    given-names: "S. S."
+    given-names: Shashwat S.
   - family-names: Tinapple
-    given-names: "J. W."
+    given-names: Joseph W.
   - family-names: Barlage
-    given-names: "J. M."
+    given-names: Joseph M.
   - family-names: Song
-    given-names: "J. W."
+    given-names: Jonathan W.
   - family-names: Jones
-    given-names: "T. H."
+    given-names: Travis H.
 version: 1.0.0
-date-released: 2026-01-01
+date-released: 2026-10-10
 repository-code: "https://github.com/songlab-osu/vessel_permeability"
 url: "https://github.com/songlab-osu/vessel_permeability"
-abstract: "MATLAB code for measuring the apparent permeability (P_app) of cylindrical microvessels from fluorescence time-lapse images of tracer perfusion."
+abstract: >-
+  MATLAB code for measuring the apparent permeability (P_app) of
+  cylindrical microvessels from fluorescence time-lapse images of tracer
+  perfusion. The vessel lumen is segmented, background- and
+  baseline-corrected tracer intensities in the lumen and surrounding
+  matrix are tracked over time, and P_app is computed from the rate of
+  tracer accumulation outside the vessel with a geometry factor for
+  confocal or widefield imaging. Reads ImageJ/Fiji TIFFs natively and
+  Nikon .nd2 and other microscope formats via Bio-Formats.
 keywords:
   - MATLAB
   - permeability
+  - apparent permeability
   - microvessels
+  - microfluidics
   - image analysis
+  - fluorescence microscopy
   - tracer diffusion
 license: MIT
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.23222326
-    description: "Zenodo archive DOI"
+# After the first Zenodo release, add the software's concept DOI here:
+# doi: 10.5281/zenodo.XXXXXXX
 references:
-  - type: article
+  - type: data
+    title: "Image data and experiment files for: Imaging Modality-Dependent Differences in Apparent Vascular Permeability Measurements of Cylindrical Microvessels"
     authors:
       - family-names: Holter
-        given-names: "J. C."
+        given-names: Jacob C.
       - family-names: Adorno
-        given-names: "J. J."
+        given-names: Jonathan J.
       - family-names: Agarwal
-        given-names: "S. S."
+        given-names: Shashwat S.
       - family-names: Tinapple
-        given-names: "J. W."
+        given-names: Joseph W.
       - family-names: Barlage
-        given-names: "J. M."
+        given-names: Joseph M.
       - family-names: Song
-        given-names: "J. W."
+        given-names: Jonathan W.
       - family-names: Jones
-        given-names: "T. H."
+        given-names: Travis H.
+    doi: 10.5281/zenodo.23222326
+    publisher:
+      name: Zenodo
+    year: 2026
+  - type: article
     title: "Imaging Modality-Dependent Differences in Apparent Vascular Permeability Measurements of Cylindrical Microvessels"
-    journal: "Lab on a Chip"
+    authors:
+      - family-names: Holter
+        given-names: Jacob C.
+      - family-names: Adorno
+        given-names: Jonathan J.
+      - family-names: Agarwal
+        given-names: Shashwat S.
+      - family-names: Tinapple
+        given-names: Joseph W.
+      - family-names: Barlage
+        given-names: Joseph M.
+      - family-names: Song
+        given-names: Jonathan W.
+      - family-names: Jones
+        given-names: Travis H.
+    status: submitted
     year: 2026
     notes: "Manuscript accompanying this software"

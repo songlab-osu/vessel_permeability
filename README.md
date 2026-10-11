@@ -1,6 +1,8 @@
 # VesselPermeabilityAnalysis
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23222326.svg)](https://doi.org/10.5281/zenodo.23222326)
+<!-- After the first GitHub release, add the software's Zenodo concept DOI badge here:
+[![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
+[![Data DOI](https://img.shields.io/badge/Data%20DOI-10.5281%2Fzenodo.23222326-blue)](https://doi.org/10.5281/zenodo.23222326)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b%2B-orange)](https://www.mathworks.com/products/matlab.html)
 
@@ -8,15 +10,18 @@ MATLAB code for measuring the apparent permeability (P<sub>app</sub>) of
 cylindrical microvessels from fluorescence time-lapse images of tracer
 perfusion.
 
-This repository accompanies the manuscript:
+This repository accompanies the manuscript (submitted):
 
 > Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW, Jones TH.
 > "**Imaging Modality-Dependent Differences in Apparent Vascular Permeability
-> Measurements of Cylindrical Microvessels**." *Lab on a Chip*, 2026.
-> DOI: [xx.xxxx/xxxxx](https://doi.org/xx.xxxx/xxxxx)
+> Measurements of Cylindrical Microvessels**."
 
-If you use this code, please cite both the paper and the software (see
-[Citation](#citation)).
+The image data and experiment files used in the manuscript are archived
+separately on Zenodo:
+[10.5281/zenodo.23222326](https://doi.org/10.5281/zenodo.23222326) (see
+[Reproducing the manuscript results](#reproducing-the-manuscript-results)).
+
+If you use this code, please cite the software (see [Citation](#citation)).
 
 ---
 
@@ -49,15 +54,19 @@ The vessel should run approximately horizontally across the image.
 ├── doPermeabilityAnalysis.m       % Core analysis of one image / channel
 ├── runPermeabilityBatch.m         % Batch runner driven by experiment files
 ├── permeabilityOptions.m          % All options and their defaults
+├── permeabilityVersion.m          % Toolbox version + software environment
+├── Contents.m                     % Toolbox index (used by `ver`, `help`)
 ├── RunExample.m                   % Runs the example dataset
 ├── helper_functions/
 │   ├── loadImageStack.m           % TIFF reader + Bio-Formats (ND2, etc.)
 │   └── loadExperiment.m           % Reads and validates experiment files
-├── experiments/
+├── example_experiments/
 │   ├── experiment_template.m      % Copy this for each experiment
-│   ├── example_Acell_10kDaFITC_AX.m
-│   └── example_nd2_direct.m
-├── example_data/                  % Example time-lapse
+│   ├── example_vessel.m           % Example: TIFF time-lapse
+│   └── example_nd2_direct.m       % Example: the same data read from .nd2
+├── example_data/                  % One example time-lapse (.tif and .nd2)
+├── CITATION.cff                   % Citation metadata (used by GitHub/Zenodo)
+├── CHANGELOG.md
 ├── LICENSE
 └── README.md
 ```
@@ -86,13 +95,52 @@ plane or projection per time point is expected).
 ## Quick start
 
 ```matlab
-cd VesselPermeabilityAnalysis
+cd vessel_permeability   % the folder you cloned or unzipped
 RunExample
 ```
 
+This analyses the example time-lapse twice, from the TIFF and directly
+from the `.nd2` (the latter needs Bio-Formats, see above), and writes the
+results to `results/`. Check the version you are running with
+`permeabilityVersion` or `ver`.
+
+### Reproducing the manuscript results
+
+The images and the experiment files for every run in the manuscript are in
+the Zenodo data deposit
+([10.5281/zenodo.23222326](https://doi.org/10.5281/zenodo.23222326)). The
+archive contains two folders:
+
+```
+data/                       % all .tif time-lapses
+experiments/
+├── 231CM/
+│   ├── 231CM/              % experiment (.m) files for each condition
+│   └── Control/
+├── Acell/
+└── cAMP/
+    ├── cAMP/
+    └── Control/
+```
+
+1. Unzip the archive into this repository's folder, so that `data/` and
+   `experiments/` sit next to `RunExample.m`. The experiment files use
+   paths relative to this folder, so no paths need editing. (Both folders
+   are listed in `.gitignore`, so they are never committed by accident.)
+2. Run all experiments, or one group:
+
+```matlab
+summary = runPermeabilityBatch("experiments", ...
+    SummaryFile="results/manuscript_summary.csv");
+runPermeabilityBatch("experiments/cAMP")
+```
+
+Each experiment's results go to its `output_dir`, and the batch summary
+lists every run with the software version used.
+
 ### Analysing your own experiments
 
-1. Copy `experiments/experiment_template.m` to e.g.
+1. Copy `example_experiments/experiment_template.m` to e.g.
    `experiments/exp_2025_07_24_HUVEC.m`. (Use only letters, digits and
    underscores in the file name.)
 2. Set `experiment.data_dir`, `experiment.images` (file list or wildcard
@@ -125,9 +173,9 @@ In addition, each experiment writes to its own `output_dir`:
 
 | File | Contents |
 |---|---|
-| `<name>_results.csv` | One row per image × channel: diameter, P<sub>app</sub> (whole/top/bottom), R², fit window, status |
-| `<name>_results.mat` | Full results (intensity traces, masks, resolved options) |
-| `<name>_experiment.m` | Copy of the experiment file used, for provenance |
+| `<name>_results.csv` | One row per image × channel: diameter, P<sub>app</sub> (whole/top/bottom), R², fit window, status, software version, MATLAB release |
+| `<name>_results.mat` | Full results (intensity traces, masks, resolved options, and `software`: toolbox, MATLAB, Image Processing Toolbox and Bio-Formats versions) |
+| `<name>_experiment.m` | Copy of the experiment file used, headed with the software version and date, for provenance |
 | `*_mask.png`, `*_intensity.png` | Diagnostic figures |
 
 For large batches, set `show_figures = false` in the experiment file: figures
@@ -142,15 +190,16 @@ file that cannot be loaded, is recorded in the
 
 ```matlab
 opts = struct('t_delay', 5, 'filter', true, 'analysis_start', 120);
-r = doPermeabilityAnalysis("example_data/2_c2025.07.24_Acell_10kDaFITC_AX.tif", opts);
+r = doPermeabilityAnalysis("example_data/4_s2026.05.02_cAMP_10kDaBlue_AX.tif", opts);
 r.P_app      % cm/s
+r.software   % versions used, for your records
 ```
 
 ## Options
 
 All options, with units, defaults and guidance, are documented in
 [`permeabilityOptions.m`](permeabilityOptions.m) and listed in
-[`experiments/experiment_template.m`](experiments/experiment_template.m).
+[`example_experiments/experiment_template.m`](example_experiments/experiment_template.m).
 The most important are:
 
 | Option | Default | Meaning |
@@ -167,16 +216,25 @@ The most important are:
 
 ## Citation
 
-**Paper:**
-> Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW, Jones TH.
-> "Imaging Modality-Dependent Differences in Apparent Vascular Permeability
-> Measurements of Cylindrical Microvessels." *Lab on a Chip*, 2026.
-> DOI: xx.xxxx/xxxxx
+If you use this software, please cite it. GitHub's **"Cite this
+repository"** button (from [`CITATION.cff`](CITATION.cff)) gives APA and
+BibTeX formats.
 
 **Software:**
-> Holter JC, et al. (2026). VesselPermeabilityAnalysis (Version 1.0.0)
-> [Software]. GitHub. https://github.com/username/VesselPermeabilityAnalysis.
-> DOI: 10.5281/zenodo.XXXXXXX
+> Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW, Jones TH.
+> (2026). *VesselPermeabilityAnalysis* (Version 1.0.0) [Software]. Zenodo.
+> https://github.com/songlab-osu/vessel_permeability
+<!-- After the first release, add: https://doi.org/10.5281/zenodo.XXXXXXX
+     (use the concept DOI for "all versions", or the version DOI for v1.0.0) -->
+
+**Data:**
+> Image data and experiment files for the manuscript. Zenodo.
+> https://doi.org/10.5281/zenodo.23222326
+
+**Manuscript (submitted):**
+> Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW, Jones TH.
+> "Imaging Modality-Dependent Differences in Apparent Vascular Permeability
+> Measurements of Cylindrical Microvessels."
 
 ## License
 

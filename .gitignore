@@ -1,2 +1,14 @@
+# Manuscript data and experiment files (from the Zenodo data deposit,
+# 10.5281/zenodo.23222326); unzip into the repository folder to use them.
 data/
 experiments/
+
+# Analysis outputs
+results/
+*_results.mat
+
+# MATLAB autosave / OS files
+*.asv
+*.m~
+.DS_Store
+Thumbs.db

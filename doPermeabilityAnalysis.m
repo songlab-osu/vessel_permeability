@@ -49,28 +49,29 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   I_top, I_bottom, I0_top, I0_bottom   half-vessel traces (if half)
 %   lumen_mask, ecm_mask masks used for the analysis
 %   options              the full, resolved options struct
+%   software             toolbox version and MATLAB/toolbox/Bio-Formats
+%                        versions used (see permeabilityVersion)
 %   figures              handles of figures created (invisible if
 %                        options.show_figures = false; close them with
 %                        close(results.figures) when done)
 %
 % EXAMPLE
 %   opts = struct('t_delay', 5, 'analysis_start', 30);
-%   r = doPermeabilityAnalysis('example_data/vessel.tif', opts);
+%   r = doPermeabilityAnalysis('example_data/4_s2026.05.02_cAMP_10kDaBlue_AX.tif', opts);
 %   fprintf('P_app = %.3g cm/s (R^2 = %.3f)\n', r.P_app, r.R2);
 %
 %   For processing many files with per-experiment options files, use
 %   runPermeabilityBatch.
 %
 % CITATION
-%   If you use this code, please cite:
+%   If you use this code, please cite the software (see CITATION.cff):
 %   Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW,
-%   Jones TH. "Imaging Modality-Dependent Differences in Apparent Vascular
-%   Permeability Measurements of Cylindrical Microvessels." Lab on a Chip,
-%   2026. DOI: xx.xxxx/xxxxx
+%   Jones TH. VesselPermeabilityAnalysis (Version 1.0.0) [Software].
+%   Zenodo. https://github.com/songlab-osu/vessel_permeability
 %
-%   Software: VesselPermeabilityAnalysis (Version 1.0.0) [Software].
-%   GitHub: https://github.com/username/VesselPermeabilityAnalysis
-%   DOI: 10.5281/zenodo.XXXXXXX
+%   Accompanying manuscript (submitted): "Imaging Modality-Dependent
+%   Differences in Apparent Vascular Permeability Measurements of
+%   Cylindrical Microvessels."
 %
 % AUTHORS
 %   Jacob C. Holter (a,d), Jonathan J. Adorno (a), Shashwat S. Agarwal (b),
@@ -85,10 +86,11 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   Image Processing Toolbox
 %   Bio-Formats MATLAB toolbox (bfmatlab) - only for non-TIFF input
 %
-% VERSION 1.0.0 | Created 2026-08-21 | Updated 2026-10-05
+% VERSION 1.0.0 (see permeabilityVersion) | Created 2026-08-21 | Updated 2026-10-10
 % Copyright (c) 2026 The Authors. Licensed under the MIT License (LICENSE).
 %
-% See also permeabilityOptions, runPermeabilityBatch, loadImageStack.
+% See also permeabilityOptions, runPermeabilityBatch, loadImageStack,
+% permeabilityVersion.
 
 arguments
     imageFile {mustBeTextScalar}
@@ -321,6 +323,7 @@ end
 results.lumen_mask    = BW;
 results.ecm_mask      = ECM;
 results.options       = opts;
+[~, results.software] = permeabilityVersion();
 results.figures       = gobjects(0);
 
 %% 12. Figures ============================================================

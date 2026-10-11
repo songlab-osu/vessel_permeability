@@ -1,6 +1,6 @@
 %% Example experiment: reading Nikon .nd2 files directly
 % -------------------------------------------------------------------------
-% Same settings as example_Acell_10kDaFITC_AX.m, but reads every .nd2 in
+% Similar settings to example_vessel.m, but reads every .nd2 in
 % data_dir without converting to TIFF first. Pixel size and per-frame
 % timestamps come from the ND2 metadata.
 %
@@ -8,7 +8,7 @@
 %   https://www.openmicroscopy.org/bio-formats/downloads/
 %
 %   addpath("path/to/bfmatlab")
-%   runPermeabilityBatch("experiments/example_nd2_direct.m")
+%   runPermeabilityBatch("example_experiments/example_nd2_direct.m")
 % -------------------------------------------------------------------------
 
 experiment.name       = "example_nd2_direct";

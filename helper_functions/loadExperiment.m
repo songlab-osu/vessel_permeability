@@ -5,7 +5,7 @@ function expt = loadExperiment(experimentFile, rootDir)
 %   expt = loadExperiment(experimentFile, rootDir)
 %
 %   An experiment file is a MATLAB script (see
-%   experiments/experiment_template.m) that defines a struct named
+%   example_experiments/experiment_template.m) that defines a struct named
 %   "experiment" with the fields
 %       name        text used to label outputs        (default: file name)
 %       root_dir    (optional) base folder for relative paths
@@ -31,7 +31,7 @@ function expt = loadExperiment(experimentFile, rootDir)
 %   permeabilityOptions.
 
 % -------------------------------------------------------------------------
-% Part of VesselPermeabilityAnalysis v1.0.0 - MIT License (see LICENSE)
+% Part of VesselPermeabilityAnalysis - MIT License (see LICENSE)
 % -------------------------------------------------------------------------
 
 arguments

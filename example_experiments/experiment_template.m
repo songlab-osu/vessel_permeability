@@ -1,4 +1,5 @@
 %% EXPERIMENT TEMPLATE - copy this file once per experiment and edit it
+% (e.g. into experiments/, which is ignored by git)
 % -------------------------------------------------------------------------
 % One experiment file = one set of images analysed with one set of options.
 % Run it with:
