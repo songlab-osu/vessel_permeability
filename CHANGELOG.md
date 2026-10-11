@@ -5,7 +5,7 @@ project uses [semantic versioning](https://semver.org/): the version is
 defined in `permeabilityVersion.m` and must match `Contents.m`,
 `CITATION.cff` and the git tag (`v1.0.0`, ...).
 
-## [1.0.0] - 2026-10-10
+## [1.0.0] - 2026-10-11
 
 First public release, accompanying the submitted manuscript "Imaging
 Modality-Dependent Differences in Apparent Vascular Permeability
