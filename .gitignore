@@ -12,3 +12,7 @@ results/
 *.m~
 .DS_Store
 Thumbs.db
+
+# ImageJ plugin build output
+imagej/build/
+imagej/target/
