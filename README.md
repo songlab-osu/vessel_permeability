@@ -64,6 +64,7 @@ The vessel should run approximately horizontally across the image.
 ├── RunExample.m                   % Runs the example dataset
 ├── helper_functions/
 │   ├── loadImageStack.m           % TIFF reader + Bio-Formats (ND2, etc.)
+│   ├── buildTimeVector.m          % Frame times (metadata / interval / two-phase)
 │   └── loadExperiment.m           % Reads and validates experiment files
 ├── example_experiments/
 │   ├── experiment_template.m      % Copy this for each experiment

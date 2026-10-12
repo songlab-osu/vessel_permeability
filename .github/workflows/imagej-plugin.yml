@@ -1,0 +1,44 @@
+# Builds the Fiji/ImageJ plugin and checks that all version numbers agree.
+# On a published GitHub release, the built .jar is attached to the release
+# so users can download it from the Releases page.
+name: ImageJ plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # to attach the .jar to a release
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version numbers
+        run: .github/scripts/check_versions.sh ${{ github.event.release.tag_name }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Build plugin
+        working-directory: imagej
+        run: mvn -B package
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Vessel_Permeability-jar
+          path: imagej/target/Vessel_Permeability-*.jar
+
+      - name: Attach jar to release
+        if: github.event_name == 'release'
+        working-directory: imagej
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" target/Vessel_Permeability-*.jar --clobber
