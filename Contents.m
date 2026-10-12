@@ -7,6 +7,9 @@
 %   permeabilityOptions    - All options and their defaults
 %   permeabilityVersion    - Toolbox version and software environment
 %
+% Interactive
+%   PermeabilityApp        - App: analyse one image interactively
+%
 % Examples
 %   RunExample             - Analyse the example dataset
 %

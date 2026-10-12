@@ -5,9 +5,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b%2B-orange)](https://www.mathworks.com/products/matlab.html)
 
-MATLAB code for measuring the apparent permeability (P<sub>app</sub>) of
+Software for measuring the apparent permeability (P<sub>app</sub>) of
 cylindrical microvessels from fluorescence time-lapse images of tracer
-perfusion.
+perfusion. The same method is available as:
+
+- a **MATLAB toolbox** (this folder): scripted and batch analysis, plus an
+  interactive app for single images ([`PermeabilityApp`](#interactive-app));
+- a **Fiji/ImageJ plugin** ([`imagej/`](imagej/README.md)): no MATLAB
+  needed.
 
 This repository accompanies the manuscript (submitted):
 
@@ -55,6 +60,7 @@ The vessel should run approximately horizontally across the image.
 ├── permeabilityOptions.m          % All options and their defaults
 ├── permeabilityVersion.m          % Toolbox version + software environment
 ├── Contents.m                     % Toolbox index (used by `ver`, `help`)
+├── PermeabilityApp.m              % Interactive app for one image
 ├── RunExample.m                   % Runs the example dataset
 ├── helper_functions/
 │   ├── loadImageStack.m           % TIFF reader + Bio-Formats (ND2, etc.)
@@ -64,6 +70,7 @@ The vessel should run approximately horizontally across the image.
 │   ├── example_vessel.m           % Example: TIFF time-lapse
 │   └── example_nd2_direct.m       % Example: the same data read from .nd2
 ├── example_data/                  % One example time-lapse (.tif and .nd2)
+├── imagej/                        % Fiji/ImageJ plugin (Java), see its README
 ├── CITATION.cff                   % Citation metadata (used by GitHub/Zenodo)
 ├── CHANGELOG.md
 ├── LICENSE
@@ -185,6 +192,27 @@ are drawn off-screen, saved as PNGs, and closed, so no windows open. Set
 An image that fails (e.g. a mask that does not segment), or an experiment
 file that cannot be loaded, is recorded in the
 `status` column and the batch continues.
+
+### Interactive app
+
+To analyse a single image interactively:
+
+```matlab
+PermeabilityApp                                   % or
+PermeabilityApp("example_data/4_s2026.05.02_cAMP_10kDaBlue_AX.tif")
+```
+
+Open an image, browse its frames, set the options (grouped as in
+`permeabilityOptions.m`) and press **Run analysis**. The app shows the lumen
+and ECM masks, the ECM intensity with the linear fit (and the top/bottom
+halves), the lumen intensity with the I<sub>0</sub> reference, and a results
+table. **Export results** saves a CSV (same columns as the batch CSV), the
+full results `.mat` file and the figures as PNG.
+
+**Save settings** writes an experiment file for the current image and
+options, so a setting found interactively can be re-run or applied to more
+images with `runPermeabilityBatch`. **Load settings** reads the options from
+any experiment file. The app remembers the last options used.
 
 ### Single file from the command line
 

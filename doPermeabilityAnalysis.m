@@ -48,6 +48,15 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   time, I, I0          time vector [s] and intensity traces (after t_delay)
 %   I_top, I_bottom, I0_top, I0_bottom   half-vessel traces (if half)
 %   lumen_mask, ecm_mask masks used for the analysis
+%   analysed_frame       raw first analysed frame (after cropping), for
+%                        displaying the masks
+%   crop_cols            [first last] image column kept after crop_um
+%   centroid_row         lumen centroid row (top/bottom split for half)
+%   background_rows      height of each background strip [pixels]
+%   ref_index            index into time/I0 of the I0 reference frame
+%   fit_index            indices into time/I of the points in the fit
+%   fit_coeffs           [slope intercept] of the whole-vessel fit
+%                        (fit_coeffs_top/_bottom for the halves, if half)
 %   options              the full, resolved options struct
 %   software             toolbox version and MATLAB/toolbox/Bio-Formats
 %                        versions used (see permeabilityVersion)
@@ -326,6 +335,16 @@ if opts.half
 end
 results.lumen_mask    = BW;
 results.ecm_mask      = ECM;
+results.analysed_frame  = data.stack(:, cols, t_idx);
+results.crop_cols       = cols([1 end]);
+results.centroid_row    = centroid_y;
+results.background_rows = bgRows;
+results.ref_index       = ref_idx;
+results.fit_index       = win;
+results.fit_coeffs      = fitLine;
+if opts.half
+    results.fit_coeffs_top = fitTop;  results.fit_coeffs_bottom = fitBot;
+end
 results.options       = opts;
 [~, results.software] = permeabilityVersion();
 results.figures       = gobjects(0);
