@@ -23,6 +23,10 @@ GitHub build runs it on every push and release.
   (`_top`/`_bottom` with `half`).
 - GitHub Actions build of the ImageJ plugin; the `.jar` is attached to each
   GitHub release.
+- Reference results for the example TIFF (`example_data/reference_results.csv`,
+  from v1.0.0 in MATLAB R2025b), checked by `tests/testExample.m` (MATLAB,
+  to 0.01%) and by the plugin's `ExampleAgreementTest` (within 1%; the plugin
+  currently differs by at most 0.34%).
 
 ### Changed
 - Frame timing moved to `helper_functions/buildTimeVector.m`, shared by
