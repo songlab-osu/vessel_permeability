@@ -133,26 +133,23 @@ On the example time-lapse in this repository
 `example_experiments/example_vessel.m` (time delay 5 s, dilation 10 µm above
 and below, halves on):
 
-| | MATLAB v1.0.0 (R2025b) | Plugin | Difference |
-|---|---|---|---|
-| Diameter (µm) | 206.51 | 206.72 | +0.10% |
-| P<sub>app</sub> (cm/s) | 6.849×10⁻⁷ | 6.832×10⁻⁷ | −0.25% |
-| P<sub>app</sub> top (cm/s) | 6.381×10⁻⁷ | 6.372×10⁻⁷ | −0.14% |
-| P<sub>app</sub> bottom (cm/s) | 7.327×10⁻⁷ | 7.302×10⁻⁷ | −0.34% |
-| R² | 0.9223 | 0.9223 | – |
+| | MATLAB v1.0.0 (R2025b) | Plugin |
+|---|---|---|
+| Diameter (µm) | 206.51 | 206.51 |
+| P<sub>app</sub> (cm/s) | 6.8492×10⁻⁷ | 6.8492×10⁻⁷ |
+| P<sub>app</sub> top (cm/s) | 6.3808×10⁻⁷ | 6.3808×10⁻⁷ |
+| P<sub>app</sub> bottom (cm/s) | 7.3267×10⁻⁷ | 7.3267×10⁻⁷ |
+| R² | 0.9223 | 0.9223 |
 
 The MATLAB values are stored in `example_data/reference_results.csv`, and
 `mvn package` runs a test
 (`src/test/java/vesselpermeability/ExampleAgreementTest.java`) that fails if
-the plugin moves more than 1% from them. Known sources of the small
-differences:
+the plugin moves more than 0.01% from them. Possible sources of small
+differences on other images:
 
 - **Lumen dilation** uses an exact Euclidean disk; MATLAB's `strel('disk')`
   uses a polygonal approximation. This only matters when dilation > 0, and
-  only at the pixel level.
-- **Lumen mask:** on this image the plugin's automatic mask is about 0.1%
-  (≈23 pixels) larger than MATLAB's, which accounts for the diameter
-  difference.
+  only at the pixel level (it made no difference on the example image).
 - **Timing** comes from the image's frame interval (or the two-phase
   settings). The MATLAB version reading ND2 directly can use per-frame
   timestamps. For constant-rate acquisitions the two are identical.

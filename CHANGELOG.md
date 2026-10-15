@@ -25,14 +25,18 @@ GitHub build runs it on every push and release.
   GitHub release.
 - Reference results for the example TIFF (`example_data/reference_results.csv`,
   from v1.0.0 in MATLAB R2025b), checked by `tests/testExample.m` (MATLAB,
-  to 0.01%) and by the plugin's `ExampleAgreementTest` (within 1%; the plugin
-  currently differs by at most 0.34%).
+  to 0.01%) and by the plugin's `ExampleAgreementTest` (also to 0.01%).
 
 ### Changed
 - Frame timing moved to `helper_functions/buildTimeVector.m`, shared by
   `doPermeabilityAnalysis` and `PermeabilityApp`.
 
 ### Fixed
+- ImageJ plugin: the contrast stretch before the Otsu threshold now uses a
+  65536-bin histogram, as MATLAB's `stretchlim` does for non-8-bit images
+  (it used 256 bins). The automatic lumen mask, and so the diameter and
+  P<sub>app</sub>, now match MATLAB exactly on the example image; before,
+  they differed by up to 0.34%.
 - `PermeabilityApp`: the frame time shown under the preview now follows the
   two-phase and frame-interval settings (it showed the file's times only),
   and marks frames before the time delay and the baseline frame.

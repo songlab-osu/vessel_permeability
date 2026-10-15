@@ -17,13 +17,11 @@ import org.junit.Test;
  * the settings of example_experiments/example_vessel.m and the reference
  * values in example_data/reference_results.csv.
  *
- * The two implementations differ slightly: the lumen dilation uses an exact
- * Euclidean disk here and strel('disk') in MATLAB, and the lumen mask differs
- * by a few pixels. The tolerance (1%) covers these; the current differences
- * are below 0.4%.
+ * The reference values are stored to 5 significant figures, so the
+ * tolerance is 0.01%; the plugin currently reproduces all of them.
  */
 public class ExampleAgreementTest {
-    private static final double REL_TOL = 0.01;
+    private static final double REL_TOL = 1e-4;
     private static double[] ref;              // d, P, P_top, P_bottom, R2
     private static PermeabilityAnalyzer.Result r;
 
@@ -55,5 +53,5 @@ public class ExampleAgreementTest {
     @Test public void pApp()       { assertRel("P_app", ref[1], r.pApp); }
     @Test public void pAppTop()    { assertRel("P_app_top", ref[2], r.pAppTop); }
     @Test public void pAppBottom() { assertRel("P_app_bottom", ref[3], r.pAppBottom); }
-    @Test public void r2()         { assertEquals("R2", ref[4], r.r2, 0.002); }
+    @Test public void r2()         { assertEquals("R2", ref[4], r.r2, 1e-4); }
 }
