@@ -1,18 +1,24 @@
-%% testExample.m - check the analysis against the reference results
-% -------------------------------------------------------------------------
-% Runs doPermeabilityAnalysis on the example TIFF with the settings in
-% example_experiments/example_vessel.m and compares the results with
-% example_data/reference_results.csv (recorded with v1.0.0, MATLAB R2025b).
-% Run it after changing the analysis code:
+function tests = testExample
+%TESTEXAMPLE  Check the analysis against the reference results.
 %
-%   runtests("tests/testExample.m")
+%   Runs doPermeabilityAnalysis once on the example TIFF with the settings
+%   in example_experiments/example_vessel.m and compares the results with
+%   example_data/reference_results.csv (recorded with v1.0.0, MATLAB
+%   R2025b). Run it after changing the analysis code:
 %
-% The same reference values are used by the ImageJ plugin's test
-% (imagej/src/test/java/vesselpermeability/ExampleAgreementTest.java).
+%       results = runtests("tests/testExample.m")
+%
+%   The same reference values are used by the ImageJ plugin's test
+%   (imagej/src/test/java/vesselpermeability/ExampleAgreementTest.java).
+
 % -------------------------------------------------------------------------
 % Part of VesselPermeabilityAnalysis - MIT License (see LICENSE)
 % -------------------------------------------------------------------------
 
+tests = functiontests(localfunctions);
+end
+
+function setupOnce(testCase)
 root = fileparts(fileparts(mfilename('fullpath')));
 addpath(root, fullfile(root, 'helper_functions'));
 ref = readtable(fullfile(root, 'example_data', 'reference_results.csv'), ...
@@ -21,22 +27,34 @@ expt = loadExperiment(fullfile(root, 'example_experiments', 'example_vessel.m'))
 opts = expt.options;
 opts.plot_mask = false;
 opts.plot_graph = false;
-r = doPermeabilityAnalysis(expt.images(1), opts);
+testCase.TestData.ref = ref;
+testCase.TestData.r = doPermeabilityAnalysis(expt.images(1), opts);
+end
 
-% The reference values are stored to 5 significant figures
-relTol = 1e-4;
+% The reference values are stored to 5 significant figures, so results are
+% compared to a relative tolerance of 1e-4.
 
-%% Diameter
-assert(abs(r.diameter_um / ref.diameter_um - 1) < relTol, ...
-    'diameter_um = %.6g, reference %.6g', r.diameter_um, ref.diameter_um)
+function testDiameter(testCase)
+d = testCase.TestData;
+verifyEqual(testCase, d.r.diameter_um, d.ref.diameter_um, 'RelTol', 1e-4);
+end
 
-%% Apparent permeability
-assert(abs(r.P_app / ref.P_app_cm_s - 1) < relTol, ...
-    'P_app = %.6g, reference %.6g', r.P_app, ref.P_app_cm_s)
-assert(abs(r.P_app_top / ref.P_app_top_cm_s - 1) < relTol, ...
-    'P_app_top = %.6g, reference %.6g', r.P_app_top, ref.P_app_top_cm_s)
-assert(abs(r.P_app_bottom / ref.P_app_bottom_cm_s - 1) < relTol, ...
-    'P_app_bottom = %.6g, reference %.6g', r.P_app_bottom, ref.P_app_bottom_cm_s)
+function testApparentPermeability(testCase)
+d = testCase.TestData;
+verifyEqual(testCase, d.r.P_app, d.ref.P_app_cm_s, 'RelTol', 1e-4);
+end
 
-%% Fit quality
-assert(abs(r.R2 - ref.R2) < 1e-4, 'R2 = %.6g, reference %.6g', r.R2, ref.R2)
+function testApparentPermeabilityTop(testCase)
+d = testCase.TestData;
+verifyEqual(testCase, d.r.P_app_top, d.ref.P_app_top_cm_s, 'RelTol', 1e-4);
+end
+
+function testApparentPermeabilityBottom(testCase)
+d = testCase.TestData;
+verifyEqual(testCase, d.r.P_app_bottom, d.ref.P_app_bottom_cm_s, 'RelTol', 1e-4);
+end
+
+function testFitQuality(testCase)
+d = testCase.TestData;
+verifyEqual(testCase, d.r.R2, d.ref.R2, 'AbsTol', 1e-4);
+end
