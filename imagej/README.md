@@ -128,16 +128,28 @@ run("Analyze Vessel Permeability...", "image=[vessel1.nd2] channel=1 lumen_mask=
 
 ## Agreement with the MATLAB version
 
-On the example dataset (`2_c2025.07.24_Acell_10kDaFITC_AX.tif` from the
-manuscript data deposit, https://doi.org/10.5281/zenodo.23222326; time delay
-5 s, Gaussian filter 200 µm, fit from 120 s, halves on) the plugin gives
-d = 310.8 µm and P<sub>app</sub> = 1.868×10⁻⁵ cm/s (top 1.721×10⁻⁵,
-bottom 2.017×10⁻⁵, R² = 0.996). These match the MATLAB-equivalent
-computation. Small, documented differences:
+On the example time-lapse in this repository
+(`example_data/4_s2026.05.02_cAMP_10kDaBlue_AX.tif`), with the settings of
+`example_experiments/example_vessel.m` (time delay 5 s, dilation 10 µm above
+and below, halves on):
+
+| | MATLAB v1.0.0 (R2025b) | Plugin |
+|---|---|---|
+| Diameter (µm) | 206.51 | 206.51 |
+| P<sub>app</sub> (cm/s) | 6.8492×10⁻⁷ | 6.8492×10⁻⁷ |
+| P<sub>app</sub> top (cm/s) | 6.3808×10⁻⁷ | 6.3808×10⁻⁷ |
+| P<sub>app</sub> bottom (cm/s) | 7.3267×10⁻⁷ | 7.3267×10⁻⁷ |
+| R² | 0.9223 | 0.9223 |
+
+The MATLAB values are stored in `example_data/reference_results.csv`, and
+`mvn package` runs a test
+(`src/test/java/vesselpermeability/ExampleAgreementTest.java`) that fails if
+the plugin moves more than 0.01% from them. Possible sources of small
+differences on other images:
 
 - **Lumen dilation** uses an exact Euclidean disk; MATLAB's `strel('disk')`
   uses a polygonal approximation. This only matters when dilation > 0, and
-  only at the pixel level.
+  only at the pixel level (it made no difference on the example image).
 - **Timing** comes from the image's frame interval (or the two-phase
   settings). The MATLAB version reading ND2 directly can use per-frame
   timestamps. For constant-rate acquisitions the two are identical.

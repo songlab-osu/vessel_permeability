@@ -64,6 +64,7 @@ The vessel should run approximately horizontally across the image.
 ├── RunExample.m                   % Runs the example dataset
 ├── helper_functions/
 │   ├── loadImageStack.m           % TIFF reader + Bio-Formats (ND2, etc.)
+│   ├── buildTimeVector.m          % Frame times (metadata / interval / two-phase)
 │   └── loadExperiment.m           % Reads and validates experiment files
 ├── example_experiments/
 │   ├── experiment_template.m      % Copy this for each experiment
@@ -71,6 +72,7 @@ The vessel should run approximately horizontally across the image.
 │   └── example_nd2_direct.m       % Example: the same data read from .nd2
 ├── example_data/                  % One example time-lapse (.tif and .nd2)
 ├── imagej/                        % Fiji/ImageJ plugin (Java), see its README
+├── tests/testExample.m            % Checks results against example_data/reference_results.csv
 ├── CITATION.cff                   % Citation metadata (used by GitHub/Zenodo)
 ├── CHANGELOG.md
 ├── LICENSE

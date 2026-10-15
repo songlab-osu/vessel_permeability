@@ -32,6 +32,7 @@ properties
     MaskFile    string = ""      % lumen mask (mask_mode = "file")
     Stack       double = []      % H x W x T frames of the selected channel
     FrameTimes  double = []      % T x 1 [s] from metadata ([] if none)
+    FrameIndex  double = 1       % frame shown in the preview
     Results     struct = struct([])  % output of doPermeabilityAnalysis
 end
 
@@ -142,7 +143,7 @@ methods
         crop = opts.crop_um([1 end]);
         app.Controls.crop_left.Value = crop(1);
         app.Controls.crop_right.Value = crop(2);
-        app.updateEnable();
+        app.onOptionChanged();
     end
 
     function applyOptions(app, opts)
@@ -291,7 +292,7 @@ methods (Access = private)
         app.PreviewTab = uitab(app.Tabs, 'Title', 'Image');
         g = uigridlayout(app.PreviewTab, [2 1], 'RowHeight', {'1x', 26});
         app.PreviewAxes = PermeabilityApp.imageAxes(g);
-        sg = uigridlayout(g, [1 2], 'ColumnWidth', {'1x', 210}, 'Padding', [0 0 0 0]);
+        sg = uigridlayout(g, [1 2], 'ColumnWidth', {'1x', 340}, 'Padding', [0 0 0 0]);
         app.FrameSlider = uislider(sg, 'Limits', [1 2], 'Value', 1, ...
             'MajorTicks', [], 'MinorTicks', [], 'Enable', 'off', ...
             'ValueChangingFcn', @(~, e) app.showFrame(e.Value), ...
@@ -361,7 +362,7 @@ methods (Access = private)
         [name, type, label, tip] = def{[1 3 4 5]};
         if type == "bool"
             c = uicheckbox(g, 'Text', label, 'Tooltip', tip, ...
-                'ValueChangedFcn', @(~, ~) app.updateEnable());
+                'ValueChangedFcn', @(~, ~) app.onOptionChanged());
             c.Layout.Row = row;
             c.Layout.Column = [1 2];
             app.Controls.(name) = c;
@@ -372,8 +373,7 @@ methods (Access = private)
         l.Layout.Column = 1;
         switch type
             case "choice"
-                c = uidropdown(g, 'Items', def{6}, 'Tooltip', tip, ...
-                    'ValueChangedFcn', @(~, ~) app.updateEnable());
+                c = uidropdown(g, 'Items', def{6}, 'Tooltip', tip);
             case "int"
                 c = uispinner(g, 'Limits', [1 Inf], 'Step', 1, ...
                     'RoundFractionalValues', 'on', 'Tooltip', tip);
@@ -383,9 +383,15 @@ methods (Access = private)
             otherwise
                 c = uieditfield(g, 'numeric', 'Limits', [0 Inf], 'Tooltip', tip);
         end
+        c.ValueChangedFcn = @(~, ~) app.onOptionChanged();
         c.Layout.Row = row;
         c.Layout.Column = 2;
         app.Controls.(name) = c;
+    end
+
+    function onOptionChanged(app)
+        app.updateEnable();
+        app.showFrame(app.FrameIndex);   % timing options change frame times
     end
 
     function updateEnable(app)
@@ -475,11 +481,35 @@ methods (Access = private)
         else
             app.PreviewImage.CData = app.Stack(:, :, k);
         end
+        app.FrameIndex = k;
         txt = sprintf('Frame %d / %d', k, size(app.Stack, 3));
-        if numel(app.FrameTimes) >= k
-            txt = [txt sprintf('   t = %.1f s', app.FrameTimes(k))];
+        t = app.frameTimes();
+        if ~isempty(t)
+            txt = [txt sprintf('   t = %.1f s', t(k))];
+            if t(k) < app.Controls.t_delay.Value - 1e-6
+                txt = [txt '  (before time delay)'];
+            end
+        end
+        if k == app.Controls.baseline_frame.Value
+            txt = [txt '  (baseline)'];
         end
         app.FrameLabel.Text = txt;
+        app.FrameLabel.Tooltip = txt;
+    end
+
+    function t = frameTimes(app)
+        %FRAMETIMES  Frame times [s] as the analysis will use them: from
+        % the two-phase settings or frame interval if set, else the file.
+        c = app.Controls;
+        o = struct('multiphase', c.multiphase.Value, ...
+            'phase1_frames', c.phase1_frames.Value, ...
+            'phase1_int', c.phase1_int.Value, 'phase2_int', c.phase2_int.Value, ...
+            'frame_interval_s', c.frame_interval_s.Value);
+        try
+            t = buildTimeVector(app.FrameTimes, size(app.Stack, 3), o, app.ImageFile);
+        catch
+            t = [];                      % no timing in the file or settings
+        end
     end
 
     %% --- Results ----------------------------------------------------------

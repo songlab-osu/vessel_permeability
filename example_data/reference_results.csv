@@ -1,0 +1,2 @@
+file,channel,diameter_um,P_app_cm_s,P_app_top_cm_s,P_app_bottom_cm_s,R2,software_version,matlab_release
+4_s2026.05.02_cAMP_10kDaBlue_AX.tif,1,206.51,6.8492e-07,6.3808e-07,7.3267e-07,0.9223,1.0.0,R2025b

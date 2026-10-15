@@ -16,6 +16,7 @@
 % Helper functions (helper_functions/)
 %   loadImageStack         - TIFF reader + Bio-Formats (ND2, etc.)
 %   loadExperiment         - Read and validate experiment files
+%   buildTimeVector        - Frame times from metadata, interval or two phases
 %
 % Experiment files (example_experiments/)
 %   experiment_template    - Copy this for each experiment

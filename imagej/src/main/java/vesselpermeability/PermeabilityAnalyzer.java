@@ -341,24 +341,28 @@ public class PermeabilityAnalyzer {
         return h;
     }
 
-    /** imadjust(I) with stretchlim defaults: saturate 1% at each end. */
+    /**
+     * imadjust(I) with stretchlim defaults: saturate 1% at each end.
+     * For non-uint8 images MATLAB's stretchlim uses a 65536-bin histogram
+     * (bin = round(v * 65535)), so the limits are not multiples of 1/255.
+     */
     static double[] imadjust(double[] f) {
-        double[] h = hist256(f);
-        double tot = 0; for (double v : h) tot += v;
-        double c = 0; int lo = -1, hi = -1;
-        for (int i = 0; i < 256; i++) {
+        final int nb = 65536;
+        int[] h = new int[nb];
+        for (double v : f) h[(int) Math.round(Math.min(1, Math.max(0, v)) * (nb - 1))]++;
+        double tot = f.length, c = 0;
+        int lo = -1, hi = -1;
+        for (int i = 0; i < nb; i++) {
             c += h[i] / tot;
             if (lo < 0 && c > 0.01) lo = i;
             if (hi < 0 && c >= 0.99) hi = i;
         }
         double low, high;
         if (lo == hi || lo < 0 || hi < 0) { low = 0; high = 1; }
-        else { low = lo / 255.0; high = hi / 255.0; }
+        else { low = lo / (double) (nb - 1); high = hi / (double) (nb - 1); }
         double[] out = new double[f.length];
-        for (int i = 0; i < f.length; i++) {
-            double v = (Math.min(Math.max(f[i], low), high) - low) / (high - low);
-            out[i] = v;
-        }
+        for (int i = 0; i < f.length; i++)
+            out[i] = (Math.min(Math.max(f[i], low), high) - low) / (high - low);
         return out;
     }
 
