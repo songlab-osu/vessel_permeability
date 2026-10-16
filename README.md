@@ -255,11 +255,15 @@ BibTeX formats.
 > (2026). *VesselPermeabilityAnalysis* (Version 1.0.0) [Software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23301972
 
-To cite the exact version you used, use its version DOI (v1.0.0:
-[10.5281/zenodo.23301972](https://doi.org/10.5281/zenodo.23301972)). To
-refer to the software in general, use the concept DOI, which always
-resolves to the latest version:
-[10.5281/zenodo.23301971](https://doi.org/10.5281/zenodo.23301971).
+To cite the exact version you used, use its version DOI. To refer to the
+software in general, use the concept DOI, which always resolves to the
+latest version.
+
+| Version | DOI |
+|---|---|
+| All versions (concept DOI) | [10.5281/zenodo.23301971](https://doi.org/10.5281/zenodo.23301971) |
+| v1.1.0 | [10.5281/zenodo.23420441](https://doi.org/10.5281/zenodo.23420441) |
+| v1.0.0 (used in the manuscript) | [10.5281/zenodo.23301972](https://doi.org/10.5281/zenodo.23301972) |
 
 **Data:**
 > Image data and experiment files for the manuscript. Zenodo.
