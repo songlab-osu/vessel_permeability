@@ -30,7 +30,7 @@ function [v, info] = permeabilityVersion()
 % Please cite the software; see CITATION.cff and README.md.
 % -------------------------------------------------------------------------
 
-v = "1.0.0";
+v = "1.1.0";
 if nargout < 2
     return
 end

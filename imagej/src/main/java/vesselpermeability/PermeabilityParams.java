@@ -1,5 +1,5 @@
 /*
- * Vessel Permeability (Fiji/ImageJ plugin) v1.0.0
+ * Vessel Permeability (Fiji/ImageJ plugin) v1.1.0
  * Copyright (c) 2026 Holter JC, Adorno JJ, Agarwal SS, Tinapple JW,
  * Barlage JM, Song JW, Jones TH. MIT License (see LICENSE).
  *

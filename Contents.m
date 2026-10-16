@@ -1,5 +1,5 @@
 % VesselPermeabilityAnalysis - apparent permeability of cylindrical microvessels
-% Version 1.0.0 (R2023b) 11-Oct-2026
+% Version 1.1.0 (R2023b) 16-Oct-2026
 %
 % Analysis
 %   doPermeabilityAnalysis - P_app of one time-lapse image / channel
