@@ -58,6 +58,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23301972
     description: "Version DOI for v1.0.0"
+  - type: doi
+    value: 10.5281/zenodo.23420441
+    description: "Version DOI for v1.1.0"
 references:
   - type: data
     title: "Image data and experiment files for: Imaging Modality-Dependent Differences in Apparent Vascular Permeability Measurements of Cylindrical Microvessels"
