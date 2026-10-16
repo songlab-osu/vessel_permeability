@@ -1,5 +1,5 @@
 /*
- * Vessel Permeability (Fiji/ImageJ plugin) v1.0.0
+ * Vessel Permeability (Fiji/ImageJ plugin) v1.1.0
  * Copyright (c) 2026 Holter JC, Adorno JJ, Agarwal SS, Tinapple JW,
  * Barlage JM, Song JW, Jones TH. MIT License (see LICENSE).
  *
@@ -34,7 +34,7 @@ import java.util.Arrays;
  */
 public class Vessel_Permeability implements PlugIn {
 
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "1.1.0";
     public static final String RESULTS_TITLE = "Permeability Results";
     private static final String AUTO_MASK = "Automatic (Otsu threshold)";
 

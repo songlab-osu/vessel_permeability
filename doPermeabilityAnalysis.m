@@ -75,9 +75,9 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 % CITATION
 %   If you use this code, please cite the software (see CITATION.cff):
 %   Holter JC, Adorno JJ, Agarwal SS, Tinapple JW, Barlage JM, Song JW,
-%   Jones TH. VesselPermeabilityAnalysis (Version 1.0.0) [Software].
-%   Zenodo. https://doi.org/10.5281/zenodo.23301972
-%   (all versions: https://doi.org/10.5281/zenodo.23301971)
+%   Jones TH. VesselPermeabilityAnalysis (Version 1.1.0) [Software].
+%   Zenodo. https://doi.org/10.5281/zenodo.23301971 (all versions; cite
+%   the version DOI of the release you used, listed on that page)
 %
 %   Accompanying manuscript (submitted): "Imaging Modality-Dependent
 %   Differences in Apparent Vascular Permeability Measurements of
@@ -99,7 +99,7 @@ function results = doPermeabilityAnalysis(imageFile, options, maskFile)
 %   Bio-Formats MATLAB toolbox (bfmatlab, tested with 8.5.0) - only for
 %   non-TIFF input
 %
-% VERSION 1.0.0 (see permeabilityVersion) | Created 2026-08-21 | Updated 2026-10-10
+% VERSION 1.1.0 (see permeabilityVersion) | Created 2026-08-21 | Updated 2026-10-16
 % Copyright (c) 2026 The Authors. Licensed under the MIT License (LICENSE).
 %
 % See also permeabilityOptions, runPermeabilityBatch, loadImageStack,

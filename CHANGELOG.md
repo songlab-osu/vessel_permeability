@@ -8,7 +8,7 @@ defined in `permeabilityVersion.m` and must match `Contents.m`,
 (`v1.0.0`, ...). `.github/scripts/check_versions.sh` checks this, and the
 GitHub build runs it on every push and release.
 
-## [Unreleased]
+## [1.1.0] - 2026-10-16
 
 ### Added
 - `PermeabilityApp`: interactive MATLAB app for a single image. Frame
